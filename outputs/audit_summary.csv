@@ -1,0 +1,10 @@
+metric,value
+total_rows,4799.0
+fy26_rows,713.0
+fy26_valued_rows,704.0
+fy26_missing_amount,9.0
+all_period_missing_amount,500.0
+all_period_duplicate_selection_numbers_nonnull,401.0
+fy26_duplicate_selection_numbers_nonnull,30.0
+fy26_distinct_supplier_names,576.0
+fy26_awarded_value_usd,202672714.0

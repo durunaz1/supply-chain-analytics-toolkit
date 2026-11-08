@@ -1,0 +1,10 @@
+fraction_of_largest_supplier_reallocated,new_suppliers,baseline_hhi,scenario_hhi,hhi_change,warning
+0.05,1,244.63384614189667,239.2146485801015,-5.419197561795158,"Counterfactual exposure only; no cost, capacity, reliability, or feasibility evidence"
+0.05,2,244.63384614189667,239.1433433490253,-5.490502792871382,"Counterfactual exposure only; no cost, capacity, reliability, or feasibility evidence"
+0.05,3,244.63384614189667,239.11957493866655,-5.514271203230123,"Counterfactual exposure only; no cost, capacity, reliability, or feasibility evidence"
+0.1,1,244.63384614189667,234.3658928669164,-10.267953274980272,"Counterfactual exposure only; no cost, capacity, reliability, or feasibility evidence"
+0.1,2,244.63384614189667,234.08067194261142,-10.553174199285252,"Counterfactual exposure only; no cost, capacity, reliability, or feasibility evidence"
+0.1,3,244.63384614189667,233.98559830117637,-10.648247840720302,"Counterfactual exposure only; no cost, capacity, reliability, or feasibility evidence"
+0.2,1,244.63384614189667,226.3797069863762,-18.254139155520477,"Counterfactual exposure only; no cost, capacity, reliability, or feasibility evidence"
+0.2,2,244.63384614189667,225.23882328915616,-19.39502285274051,"Counterfactual exposure only; no cost, capacity, reliability, or feasibility evidence"
+0.2,3,244.63384614189667,224.85852872341616,-19.775317418480512,"Counterfactual exposure only; no cost, capacity, reliability, or feasibility evidence"

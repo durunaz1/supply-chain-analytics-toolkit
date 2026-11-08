@@ -1,0 +1,15 @@
+{
+  "rows_raw": 4799,
+  "missing_supplier": 0,
+  "missing_category": 0,
+  "missing_award_value": 500,
+  "missing_award_date": 0,
+  "nonpositive_award_value": 0,
+  "duplicate_selection_numbers": 401,
+  "note": "Repeated selection numbers are flagged, not automatically dropped: award line granularity must be investigated.",
+  "rows_usable": 4299,
+  "rows_excluded": 500,
+  "source_file": "data/raw/world_bank_awards.csv",
+  "min_date": "2013-07-17",
+  "max_date": "2026-06-30"
+}
