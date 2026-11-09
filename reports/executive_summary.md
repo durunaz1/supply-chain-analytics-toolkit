@@ -1,47 +1,56 @@
-# Supplier Concentration and Sourcing Decisions
+# Strategic Sourcing Intelligence | Executive Decision Brief
 
-*An exploratory analysis of World Bank Group procurement awards, FY2026*
+**Source:** World Bank Group Corporate Procurement Contract Awards, downloaded 7 November 2026; analysis of the complete World Bank fiscal year FY26 (1 July 2025–30 June 2026). Official data are not P&G procurement records.
 
-## Research question
+## Decision in one minute
 
-How can published procurement awards help identify sourcing categories that may need closer review, and what can they tell us about supplier concentration?
+**Recommendation:** Do not initiate supplier replacement from award records alone. Establish a targeted category-level sourcing review, beginning with the two largest published categories, and request the missing information needed for a defensible procurement decision.
 
-## Introduction
+- **713 FY26 award records**, of which **704 have positive disclosed values** and **9 have missing award amounts** (1.3%).
+- **USD 202.67 million** in disclosed FY26 award values (not paid spend).
+- **CONTRACT CONSULTANTS** represents **81.69 million** (40.3%); **CONSULTING** represents **75.97 million** (37.5%). Together these represent **77.8%** of disclosed FY26 awards.
+- Top ten named suppliers represent **12.9%** of FY26 disclosed award value across all categories; supplier aliases and legal ownership have not been fully resolved.
 
-One of the main challenges in evaluating purchasing decisions is that cost and supplier reliability cannot always be observed together. A company might work with fewer suppliers to simplify purchasing, but depending too heavily on a small number of suppliers could also create operational risks. This means that supplier concentration is worth examining, although concentration by itself does not tell us whether a purchasing strategy is effective.
+## Category screening (FY26)
 
-This analysis uses publicly available World Bank Group corporate procurement awards. The aim is not to evaluate the Bank's procurement decisions, but to examine how award records can support an initial sourcing review. I focus on FY2026 because the dataset's reporting threshold changed during FY2025, which makes comparisons across longer periods difficult to interpret.
+| Category | Awards with values | Named suppliers | Award value (USD m) | Top supplier share | HHI |
+|---|---:|---:|---:|---:|---:|
+| CONTRACT CONSULTANTS | 234 | 212 | 81.69 | 3.6% | 122 |
+| CONSULTING | 322 | 278 | 75.97 | 2.2% | 56 |
+| EXTERNAL/CATERED EVENT | 66 | 57 | 14.75 | 7.8% | 296 |
+| FINANCIAL SERVICES | 5 | 4 | 6.27 | 73.7% | 5,813 |
+| TRANSPORTATION | 9 | 9 | 4.52 | 54.5% | 3,387 |
+| AUDIO VISUAL | 10 | 7 | 4.36 | 42.4% | 3,043 |
+| TRAINING | 11 | 10 | 3.78 | 42.6% | 2,311 |
+| TELECOMMUNICATIONS | 16 | 14 | 2.62 | 18.1% | 942 |
+| MEDICAL | 1 | 1 | 1.90 | 100.0% | 10,000 |
 
-## Data and method
+**Interpretation:** HHI is calculated from *published contract award value shares within the selected category and period*. It does not measure the suppliers' market shares, delivery reliability, substitutability, or probability of disruption. A category with very few awards can look highly concentrated for purely mechanical reasons.
 
-The FY2026 subset contains **713 records**, of which **704 have disclosed positive award values**. Their combined value is approximately **USD 202.67 million**. These figures represent reported contract awards rather than actual payments or unit purchase prices. In the complete dataset, **500 of 4,799 records** have missing award values.
+## What-if sourcing stress test (not a forecast)
 
-I grouped disclosed values by commodity category and supplier name. To examine concentration, I calculated the largest supplier's share and the Herfindahl-Hirschman Index (HHI), which adds together squared supplier value shares and scales the result to 10,000. A higher score means that the *recorded awards* are more concentrated among fewer named suppliers. It does not measure market concentration or the probability that a supplier will fail.
+For the highest-HHI category with at least 10 disclosed awards and 3 named suppliers, **AUDIO VISUAL**, the observed FY26 award-value HHI is **3,043**. Hypothetically moving **20% of the largest supplier's recorded value to two entirely new equally sized suppliers** would change the arithmetic HHI to **2,431** (change **-611** points). This does **not** demonstrate feasible supplier capacity, cost savings, lower delivery risk, or ability to switch contracts.
 
-## Results
+## Three purchasing recommendations
 
-The two largest FY2026 categories were **Contract Consultants (USD 81.69 million)** and **Consulting (USD 75.97 million)**. Together, they accounted for **77.8%** of disclosed award value. This suggests that a category review could start with these areas, where even small improvements in purchasing processes may matter. However, the data does not establish that contracts are overpriced or that savings are achievable.
+1. **Prioritize high-value categories for category-manager review.** Start with CONTRACT CONSULTANTS and CONSULTING because they account for 77.8% of disclosed FY26 award value. Segment by service scope, organization, and contracting strategy before negotiating or consolidating.
+2. **Build a supplier master-data and concentration control.** Resolve supplier aliases and parent-company relationships; then recalculate supplier share, top-3 dependence, and category HHI. Set review thresholds only after confirming legal entities and category definitions.
+3. **Investigate the relatively concentrated AUDIO VISUAL category before considering diversification.** Obtain comparable supplier bids, scope specifications, service-level evidence, switching costs, and capacity limits. Use the published scenario table as a screening tool, not a claim of realized savings.
 
-A different pattern appears in **Audio Visual**, which had **10 valued awards**, **seven named suppliers**, and an award-value HHI of approximately **3,043**. This indicates that the recorded award values were relatively concentrated. Still, the number of awards is small, and the data does not show whether the suppliers provided comparable services. Therefore, it would be premature to interpret this result as evidence of a sourcing problem.
+## Data-quality and inference caveats
 
-I also examined a hypothetical diversification scenario. If 20% of the largest Audio Visual supplier's observed award value were reassigned equally to two new suppliers, the calculated HHI would decrease from about **3,043 to 2,431**. This illustrates how the metric responds to a change in supplier allocation. It does not show that the reassignment is possible, less expensive, or less risky.
+- **500 of 4,799 records** in the complete source have missing award values; the analysis does not impute them.
+- The disclosure threshold changed from USD 250,000 to USD 100,000 in Q3 FY25. We analyze the complete FY26 period to avoid mixing these two thresholds within the primary results. This is a published-award sample, not all procurement activity.
+- Some IDIQ contract values are estimates. Published awards are not actual expenditures, invoice prices, quantities, margins, or procurement savings.
+- FY26 contains **30 repeated non-null selection numbers**. They are retained because repeated identifiers do not establish duplicate award rows. Investigate contract line granularity before any contract-count claim.
+- Supplier country reflects vendor registration, not proven production location. No delivery dates, lead times, quality measures, supplier capacities, or realized prices exist in this dataset.
+- Contract scope and duration are not standardized; differences in award size must **not** be interpreted as price inefficiency.
+- This is an **external procurement benchmark** demonstrating analytical methods, not an assessment of P&G's actual suppliers.
 
-## Discussion and purchasing recommendations
+## Decision gate for Purchasing Manager
 
-**First, prioritize a category-level review of consulting-related awards.** These categories account for most of the published FY2026 value, making them useful places to begin. Before considering negotiation or consolidation, a purchasing team would need to compare contract scopes, durations, and service requirements. Differences in total award values are not necessarily differences in price for the same service.
+**Approve a 2–4 week supplier/category data-enrichment review, not a supplier switch.** Success means identifying comparable service groups, verified supplier entities, measurable service performance, and qualified sourcing alternatives. Any future savings business case must use real bids and a total-cost model.
 
-**Second, improve supplier identification before making concentration decisions.** The analysis uses supplier names as they appear in the source. Different names may refer to the same company, and related companies may appear separately. A verified supplier master would make concentration estimates more meaningful and help distinguish apparent diversity from genuine sourcing alternatives.
+## Reproducibility
 
-**Third, investigate Audio Visual rather than immediately diversifying.** Its concentration score is high enough to justify a closer look, but the dataset does not contain bids, supplier capacity, delivery outcomes, or switching costs. These would be needed before recommending any change to supplier allocation. The scenario analysis is best understood as a way to frame questions for further investigation.
-
-## Limitations
-
-This analysis has several limitations. First, the data contains only published awards meeting disclosure criteria, not all procurement activity. Second, some indefinite-delivery contract amounts are estimates, and missing values were excluded rather than imputed. Third, supplier names have not been fully matched to legal entities. Finally, there is no information on delivery reliability, product quality, comparable unit prices, or realized savings. As a result, the findings can identify areas for review but cannot determine which suppliers should be replaced or whether diversification would improve performance.
-
-## Conclusion
-
-The main finding is not that a particular supplier or category is inefficient. Rather, the analysis shows how procurement records can help organize a sourcing review by separating categories with high reported value from categories with concentrated supplier exposure. I found it especially important that the same metric can be informative while still being insufficient for a final decision. A purchasing recommendation becomes more credible when it explains not only what the available data suggests, but also what additional evidence is needed before acting.
-
-## Source
-
-World Bank Group. *Corporate Procurement Contract Awards* (DS00028), data as of 30 June 2026, downloaded 7 November 2026. CC BY 4.0. https://financesone.worldbank.org/d/DS00028
+Run `python build_portfolio.py` and `python run_analysis.py` from the project root. Outputs include five figures, category and supplier CSV tables, outlier sensitivity, and scenario results. See `notebooks/02_empirical_fy26_analysis.ipynb` for an interactive walkthrough.
