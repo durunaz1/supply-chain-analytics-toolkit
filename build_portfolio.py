@@ -43,8 +43,31 @@ plt.rcParams.update({'font.size':10,'axes.spines.top':False,'axes.spines.right':
 def save(name):plt.tight_layout();plt.savefig(FIG/name,dpi=180,bbox_inches='tight');plt.close()
 ax=category.head(10).sort_values('awarded_usd').awarded_usd.div(1e6).plot.barh(figsize=(10,5.5),color='#164e63');ax.set_xlabel('Disclosed FY26 award value (USD millions)');ax.set_ylabel('');ax.set_title('Where published FY26 contract value is concentrated');save('01_fy26_category_value.png')
 plot=metrics.query('awards >= 10 and suppliers >= 3').copy()
-fig,ax=plt.subplots(figsize=(9,5.5));sc=ax.scatter(plot.awarded_usd/1e6,plot.hhi,s=plot.awards*3,alpha=.65,c='#0f766e');ax.set_xscale('log');ax.set_xlabel('FY26 award value (USD millions, log scale)');ax.set_ylabel('Award-value HHI (0–10,000)');ax.set_title('Category concentration: size and dependence are different');
-for _,r in plot.nlargest(5,'awarded_usd').iterrows():ax.annotate(r.category,(r.awarded_usd/1e6,r.hhi),xytext=(4,5),textcoords='offset points',fontsize=8)
+fig,ax=plt.subplots(figsize=(11,6.5))
+ax.scatter(plot.awarded_usd/1e6,plot.hhi,s=plot.awards*3,alpha=.72,c='#0f766e')
+ax.set_xscale('log')
+ax.set_xticks([2,5,10,20,50,100])
+ax.set_xticklabels(['2','5','10','20','50','100'])
+ax.set_xlim(1.5,140)
+ax.set_ylim(-260,4000)
+ax.set_xlabel('FY26 disclosed award value (USD millions, log scale)')
+ax.set_ylabel('Award-value HHI (0–10,000)')
+ax.set_title('Procurement category size and supplier dependence are different')
+for threshold in (1500,2500):
+ ax.axhline(threshold,color='#64748b',linestyle='--',linewidth=.8,alpha=.65)
+ ax.text(135,threshold+40,f'{threshold:,} reference',ha='right',fontsize=8,color='#475569')
+# Historical market-concentration reference lines are illustrative, not procurement-risk thresholds.
+labels={
+ 'CONTRACT CONSULTANTS':(5,16),
+ 'CONSULTING':(5,-16),
+ 'EXTERNAL/CATERED EVENT':(7,8),
+ 'AUDIO VISUAL':(8,8),
+ 'TRAINING':(7,-14),
+ 'TELECOMMUNICATIONS':(8,10),
+}
+for _,r in plot.iterrows():
+ if r.category in labels:
+  ax.annotate(r.category.title(),(r.awarded_usd/1e6,r.hhi),xytext=labels[r.category],textcoords='offset points',fontsize=8)
 save('02_fy26_concentration_map.png')
 fig,ax=plt.subplots(figsize=(9,4.5));sns=sub.groupby('supplier_clean').value.sum().sort_values(ascending=False);top=sns.head(12);ax.bar(range(1,len(top)+1),top.values/1e6,color='#164e63');ax.set_xlabel('Supplier rank in '+str(chosen.category));ax.set_ylabel('Award value (USD millions)');ax.set_title('Top supplier exposure within largest eligible category');save('03_supplier_exposure.png')
 fig,ax=plt.subplots(figsize=(8,4.5));forplot=scenario.pivot(index='fraction_of_largest_supplier_reallocated',columns='new_suppliers',values='scenario_hhi');forplot.plot(marker='o',ax=ax);ax.axhline(scenario.baseline_hhi.iloc[0],ls='--',color='gray',label='Baseline');ax.set_xlabel('Share of top supplier awards hypothetically reallocated');ax.set_ylabel('Counterfactual HHI');ax.set_title('Diversification reduces arithmetic concentration, not proven risk');save('04_scenario_sensitivity.png')
@@ -53,11 +76,11 @@ amount=valid.value.sum();top2=category.head(2).awarded_usd.sum()/amount;top10=va
 c1=metrics.iloc[0]; c2=metrics.iloc[1];base=scenario.baseline_hhi.iloc[0];case=scenario.query('fraction_of_largest_supplier_reallocated == 0.2 and new_suppliers == 2').iloc[0]
 summary=f'''# Strategic Sourcing Intelligence | Executive Decision Brief
 
-**Source:** World Bank Group Corporate Procurement Contract Awards, downloaded 7 November 2026; analysis of the complete World Bank fiscal year FY26 (1 July 2025–30 June 2026). Official data are not P&G procurement records.
+**Source:** World Bank Group Corporate Procurement Contract Awards, downloaded 7 November 2026; analysis of the complete World Bank fiscal year FY26 (1 July 2025–30 June 2026). This is an external case study using public data, not internal company procurement records.
 
 ## Decision in one minute
 
-**Recommendation:** Do not initiate supplier replacement from award records alone. Establish a targeted category-level sourcing review, beginning with the two largest published categories, and request the missing information needed for a defensible procurement decision.
+**Recommendation:** Treat award value and supplier concentration as separate screening dimensions. Review high-value service categories for contract scope and category management; investigate concentrated smaller categories before considering any supplier changes.
 
 - **{len(fy):,} FY26 award records**, of which **{len(valid):,} have positive disclosed values** and **{fy.value.isna().sum():,} have missing award amounts** ({fy.value.isna().mean():.1%}).
 - **USD {amount/1e6:,.2f} million** in disclosed FY26 award values (not paid spend).
@@ -77,9 +100,11 @@ summary+=f'''
 
 For the highest-HHI category with at least 10 disclosed awards and 3 named suppliers, **{chosen.category}**, the observed FY26 award-value HHI is **{base:,.0f}**. Hypothetically moving **20% of the largest supplier's recorded value to two entirely new equally sized suppliers** would change the arithmetic HHI to **{case.scenario_hhi:,.0f}** (change **{case.hhi_change:,.0f}** points). This does **not** demonstrate feasible supplier capacity, cost savings, lower delivery risk, or ability to switch contracts.
 
+**Additional category observation:** Financial Services has only five valued awards, so its high HHI is a small-sample screening signal. The Medical category has one award and HHI 10,000 by construction. The scenario therefore requires at least ten valued awards and three named suppliers.
+
 ## Three purchasing recommendations
 
-1. **Prioritize high-value categories for category-manager review.** Start with {category.index[0]} and {category.index[1]} because they account for {top2:.1%} of disclosed FY26 award value. Segment by service scope, organization, and contracting strategy before negotiating or consolidating.
+1. **Review high-value service categories for scope and contract management, not assumed concentration risk.** Start with {category.index[0]} and {category.index[1]} because they account for {top2:.1%} of disclosed FY26 award value. Segment by service scope, organization, and contracting strategy before negotiating or consolidating.
 2. **Build a supplier master-data and concentration control.** Resolve supplier aliases and parent-company relationships; then recalculate supplier share, top-3 dependence, and category HHI. Set review thresholds only after confirming legal entities and category definitions.
 3. **Investigate the relatively concentrated {chosen.category} category before considering diversification.** Obtain comparable supplier bids, scope specifications, service-level evidence, switching costs, and capacity limits. Use the published scenario table as a screening tool, not a claim of realized savings.
 
@@ -91,7 +116,7 @@ For the highest-HHI category with at least 10 disclosed awards and 3 named suppl
 - FY26 contains **{fy['Selection Number'].dropna().duplicated().sum():,} repeated non-null selection numbers**. They are retained because repeated identifiers do not establish duplicate award rows. Investigate contract line granularity before any contract-count claim.
 - Supplier country reflects vendor registration, not proven production location. No delivery dates, lead times, quality measures, supplier capacities, or realized prices exist in this dataset.
 - Contract scope and duration are not standardized; differences in award size must **not** be interpreted as price inefficiency.
-- This is an **external procurement benchmark** demonstrating analytical methods, not an assessment of P&G's actual suppliers.
+- This is an **external procurement case study**, not an assessment of any company's internal suppliers.
 
 ## Decision gate for Purchasing Manager
 
@@ -102,49 +127,6 @@ For the highest-HHI category with at least 10 disclosed awards and 3 named suppl
 Run `python build_portfolio.py` and `python run_analysis.py` from the project root. Outputs include five figures, category and supplier CSV tables, outlier sensitivity, and scenario results. See `notebooks/02_empirical_fy26_analysis.ipynb` for an interactive walkthrough.
 '''
 (ROOT/'reports'/'executive_summary.md').write_text(summary)
-# readable README
-(ROOT/'README.md').write_text('''# Strategic Sourcing Intelligence — World Bank FY26 Procurement Awards
-
-A reproducible, **real-data** purchasing decision-support case study, developed as an external procurement benchmark relevant to sourcing analytics. Not P&G internal data.
-
-## Key output
-
-Read [`reports/executive_summary.md`](reports/executive_summary.md) for verified findings and evidence-based recommendations. See `figures/` for charts, `outputs/` for machine-readable tables and `notebooks/02_empirical_fy26_analysis.ipynb` for the executable notebook.
-
-## Source and attribution
-
-World Bank Group, *Corporate Procurement Contract Awards* (DS00028), downloaded 7 November 2026, CC BY 4.0. https://financesone.worldbank.org/d/DS00028
-
-## Reproduce
-
-```bash
-pip install -r requirements.txt
-python build_portfolio.py
-python run_analysis.py
-python -m unittest discover -s tests -v
-```
-
-The official source CSV is stored at `data/raw/world_bank_awards.csv`. The primary analysis uses FY26 (July 2025–June 2026), avoiding the reporting-threshold change that occurred in Q3 FY25. The historical pipeline provides exploratory diagnostics only and **must not** be used to claim spend growth.
-
-## Method
-
-Disclosed award values, missingness, supplier/category concentration (top-1, top-3, HHI), outlier sensitivity, and hypothetical supplier diversification. No delivery, unit prices, supplier capacity, or realized savings data exist. A reduction in modeled HHI does not establish a feasible or beneficial sourcing action.
-
-## Repository
-
-- `data/raw/` source CSV (public data, CC BY 4.0)
-- `src/` reusable analysis functions
-- `notebooks/` guided and empirical notebooks
-- `build_portfolio.py` verified analysis, charts, decision report
-- `figures/` exported visualizations
-- `outputs/` auditable metrics
-- `reports/` executive decision brief
-- `tests/` unit tests
-
-## Responsible representation
-
-This portfolio was prepared with AI assistance. Present it as independently completed only if you personally reproduce, understand, validate and can defend the analysis. Do not claim verified supplier savings, delivery performance or P&G-specific findings.
-''')
 # notebook designed for independent execution and business interpretation
 cells=[
  nbf.v4.new_markdown_cell('# Strategic Sourcing Intelligence — FY26 empirical analysis\nReal World Bank procurement award data. **Awards are not actual spend, unit prices or delivery performance.**'),

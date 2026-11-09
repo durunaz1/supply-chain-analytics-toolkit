@@ -1,10 +1,10 @@
 # Strategic Sourcing Intelligence | Executive Decision Brief
 
-**Source:** World Bank Group Corporate Procurement Contract Awards, downloaded 7 November 2026; analysis of the complete World Bank fiscal year FY26 (1 July 2025–30 June 2026). Official data are not P&G procurement records.
+**Source:** World Bank Group Corporate Procurement Contract Awards, downloaded 7 November 2026; analysis of the complete World Bank fiscal year FY26 (1 July 2025–30 June 2026). This is an external case study using public data, not internal company procurement records.
 
 ## Decision in one minute
 
-**Recommendation:** Do not initiate supplier replacement from award records alone. Establish a targeted category-level sourcing review, beginning with the two largest published categories, and request the missing information needed for a defensible procurement decision.
+**Recommendation:** Treat award value and supplier concentration as separate screening dimensions. Review high-value service categories for contract scope and category management; investigate concentrated smaller categories before considering any supplier changes.
 
 - **713 FY26 award records**, of which **704 have positive disclosed values** and **9 have missing award amounts** (1.3%).
 - **USD 202.67 million** in disclosed FY26 award values (not paid spend).
@@ -31,9 +31,11 @@
 
 For the highest-HHI category with at least 10 disclosed awards and 3 named suppliers, **AUDIO VISUAL**, the observed FY26 award-value HHI is **3,043**. Hypothetically moving **20% of the largest supplier's recorded value to two entirely new equally sized suppliers** would change the arithmetic HHI to **2,431** (change **-611** points). This does **not** demonstrate feasible supplier capacity, cost savings, lower delivery risk, or ability to switch contracts.
 
+**Additional category observation:** Financial Services has only five valued awards, so its high HHI is a small-sample screening signal. The Medical category has one award and HHI 10,000 by construction. The scenario therefore requires at least ten valued awards and three named suppliers.
+
 ## Three purchasing recommendations
 
-1. **Prioritize high-value categories for category-manager review.** Start with CONTRACT CONSULTANTS and CONSULTING because they account for 77.8% of disclosed FY26 award value. Segment by service scope, organization, and contracting strategy before negotiating or consolidating.
+1. **Review high-value service categories for scope and contract management, not assumed concentration risk.** Start with CONTRACT CONSULTANTS and CONSULTING because they account for 77.8% of disclosed FY26 award value. Segment by service scope, organization, and contracting strategy before negotiating or consolidating.
 2. **Build a supplier master-data and concentration control.** Resolve supplier aliases and parent-company relationships; then recalculate supplier share, top-3 dependence, and category HHI. Set review thresholds only after confirming legal entities and category definitions.
 3. **Investigate the relatively concentrated AUDIO VISUAL category before considering diversification.** Obtain comparable supplier bids, scope specifications, service-level evidence, switching costs, and capacity limits. Use the published scenario table as a screening tool, not a claim of realized savings.
 
@@ -45,7 +47,7 @@ For the highest-HHI category with at least 10 disclosed awards and 3 named suppl
 - FY26 contains **30 repeated non-null selection numbers**. They are retained because repeated identifiers do not establish duplicate award rows. Investigate contract line granularity before any contract-count claim.
 - Supplier country reflects vendor registration, not proven production location. No delivery dates, lead times, quality measures, supplier capacities, or realized prices exist in this dataset.
 - Contract scope and duration are not standardized; differences in award size must **not** be interpreted as price inefficiency.
-- This is an **external procurement benchmark** demonstrating analytical methods, not an assessment of P&G's actual suppliers.
+- This is an **external procurement case study**, not an assessment of any company's internal suppliers.
 
 ## Decision gate for Purchasing Manager
 
