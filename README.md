@@ -190,12 +190,6 @@ World Bank Group. *Corporate Procurement Contract Awards* (DS00028).
 
 https://financesone.worldbank.org/d/DS00028
 
-Downloaded November 7, 2026.
-
 License: Creative Commons Attribution 4.0 International.
 
-## Responsible Use
 
-This project was developed with AI assistance. The analysis is based on publicly available procurement records and does not represent internal purchasing data from P&G or another FMCG company.
-
-The results should not be interpreted as evidence of realized cost savings, supplier delivery performance, or the operational feasibility of specific sourcing decisions.
